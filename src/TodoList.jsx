@@ -19,6 +19,26 @@ function TodoList() {
     ])
   }
 
+  function handleCompleteTask(code) {
+    setTasks((currentTasks) =>
+      currentTasks.map((task) =>
+        task.code === code ? { ...task, isCompleted: true } : task,
+      ),
+    )
+  }
+
+  function handleDeleteTask(code) {
+    setTasks((currentTasks) =>
+      currentTasks.filter((task) => task.code !== code),
+    )
+  }
+
+  function handleEditTask(code, title) {
+    setTasks((currentTasks) =>
+      currentTasks.map((task) => (task.code === code ? { ...task, title } : task)),
+    )
+  }
+
   return (
     <main className="todo-page" dir="rtl">
       <header className="todo-header">
@@ -27,11 +47,17 @@ function TodoList() {
         <p className="todo-count">{tasks.length} משימות</p>
       </header>
 
-      <TodoForm onAddTask={handleAddTask} />
+      <TodoForm onSubmitTask={handleAddTask} />
 
       <ul className="task-list">
         {tasks.map((task) => (
-          <TodoItem key={task.code} task={task} />
+          <TodoItem
+            key={task.code}
+            task={task}
+            onComplete={handleCompleteTask}
+            onDelete={handleDeleteTask}
+            onEdit={handleEditTask}
+          />
         ))}
       </ul>
     </main>
