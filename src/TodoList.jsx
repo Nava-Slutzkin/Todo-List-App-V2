@@ -1,13 +1,32 @@
+import { useState } from 'react'
 import './TodoList.css'
 import TodoItem from './TodoItem'
 
-const tasks = [
+const initialTasks = [
   { code: 101, title: 'להשלים את תרגיל React', isCompleted: true },
   { code: 102, title: 'לתרגל עבודה עם מערכים', isCompleted: false },
   { code: 103, title: 'לבדוק את האפליקציה בדפדפן', isCompleted: false },
 ]
 
 function TodoList() {
+  const [tasks, setTasks] = useState(initialTasks)
+  const [newTaskTitle, setNewTaskTitle] = useState('')
+
+  function handleAddTask(event) {
+    event.preventDefault()
+
+    const title = newTaskTitle.trim()
+    if (!title) {
+      return
+    }
+
+    setTasks((currentTasks) => [
+      ...currentTasks,
+      { code: Date.now(), title, isCompleted: false },
+    ])
+    setNewTaskTitle('')
+  }
+
   return (
     <main className="todo-page" dir="rtl">
       <header className="todo-header">
@@ -15,6 +34,17 @@ function TodoList() {
         <h1>רשימת המשימות</h1>
         <p className="todo-count">{tasks.length} משימות</p>
       </header>
+
+      <form className="task-form" onSubmit={handleAddTask}>
+        <input
+          aria-label="כותרת המשימה החדשה"
+          onChange={(event) => setNewTaskTitle(event.target.value)}
+          placeholder="מה צריך לעשות?"
+          type="text"
+          value={newTaskTitle}
+        />
+        <button type="submit">הוספת משימה</button>
+      </form>
 
       <ul className="task-list">
         {tasks.map((task) => (
