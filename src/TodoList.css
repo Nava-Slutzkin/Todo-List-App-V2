@@ -32,49 +32,6 @@
   font-size: 0.9rem;
 }
 
-.task-form {
-  display: flex;
-  gap: 0.65rem;
-  margin-bottom: 1.25rem;
-}
-
-.task-form input {
-  flex: 1;
-  min-width: 0;
-  padding: 0.75rem 0.9rem;
-  border: 1px solid #cbd4cb;
-  border-radius: 6px;
-  background: #fff;
-  color: #25352d;
-  font: inherit;
-}
-
-.task-form input:focus-visible {
-  border-color: #4c8063;
-  outline: 2px solid #4c8063;
-  outline-offset: 2px;
-}
-
-.task-form button {
-  padding: 0.75rem 1rem;
-  border: 0;
-  border-radius: 6px;
-  background: #356247;
-  color: #fff;
-  cursor: pointer;
-  font: inherit;
-  font-weight: 600;
-}
-
-.task-form button:hover {
-  background: #294f38;
-}
-
-.task-form button:focus-visible {
-  outline: 2px solid #356247;
-  outline-offset: 2px;
-}
-
 .task-list {
   display: grid;
   gap: 0.65rem;

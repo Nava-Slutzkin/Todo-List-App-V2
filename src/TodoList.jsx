@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './TodoList.css'
+import TodoForm from './TodoForm'
 import TodoItem from './TodoItem'
 
 const initialTasks = [
@@ -10,21 +11,12 @@ const initialTasks = [
 
 function TodoList() {
   const [tasks, setTasks] = useState(initialTasks)
-  const [newTaskTitle, setNewTaskTitle] = useState('')
 
-  function handleAddTask(event) {
-    event.preventDefault()
-
-    const title = newTaskTitle.trim()
-    if (!title) {
-      return
-    }
-
+  function handleAddTask(title) {
     setTasks((currentTasks) => [
       ...currentTasks,
       { code: Date.now(), title, isCompleted: false },
     ])
-    setNewTaskTitle('')
   }
 
   return (
@@ -35,16 +27,7 @@ function TodoList() {
         <p className="todo-count">{tasks.length} משימות</p>
       </header>
 
-      <form className="task-form" onSubmit={handleAddTask}>
-        <input
-          aria-label="כותרת המשימה החדשה"
-          onChange={(event) => setNewTaskTitle(event.target.value)}
-          placeholder="מה צריך לעשות?"
-          type="text"
-          value={newTaskTitle}
-        />
-        <button type="submit">הוספת משימה</button>
-      </form>
+      <TodoForm onAddTask={handleAddTask} />
 
       <ul className="task-list">
         {tasks.map((task) => (
