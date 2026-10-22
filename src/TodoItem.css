@@ -1,0 +1,49 @@
+.task-item {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.9rem;
+  min-height: 4rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e0e5df;
+  border-right: 4px solid var(--task-color);
+  border-radius: 6px;
+  background: #fff;
+  text-align: right;
+}
+
+.task-code {
+  color: #7a857d;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.task-title {
+  color: #25352d;
+  font-weight: 600;
+}
+
+.is-completed .task-title {
+  color: #68776d;
+}
+
+.task-status {
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  background: #f3f5f1;
+  color: var(--task-color);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .task-item {
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: 0.4rem 0.75rem;
+  }
+
+  .task-status {
+    grid-column: 2;
+    justify-self: start;
+  }
+}

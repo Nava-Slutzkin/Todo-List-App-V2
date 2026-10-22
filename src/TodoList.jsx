@@ -1,4 +1,5 @@
 import './TodoList.css'
+import TodoItem from './TodoItem'
 
 const tasks = [
   { code: 101, title: 'להשלים את תרגיל React', isCompleted: true },
@@ -17,16 +18,7 @@ function TodoList() {
 
       <ul className="task-list">
         {tasks.map((task) => (
-          <li
-            className={`task-item${task.isCompleted ? ' is-completed' : ''}`}
-            key={task.code}
-          >
-            <span className="task-code">{task.code}</span>
-            <span className="task-title">{task.title}</span>
-            <span className="task-status">
-              {task.isCompleted ? 'הושלמה' : 'בתהליך'}
-            </span>
-          </li>
+          <TodoItem key={task.code} task={task} />
         ))}
       </ul>
     </main>
